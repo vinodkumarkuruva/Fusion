@@ -1,0 +1,10 @@
+Flask  
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-JWT
+Werkzeug
+flask_jwt_extended
+flask_mail
+passlib
+flask_login
+redis
