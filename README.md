@@ -1,7 +1,7 @@
 Project Name : Auth Service for Multi tenant Saas - Backend Engineer
 
 ## Introduction
-The project aims to demonstrate building a REST API with Flask.This is a multi-tenant authentication and user management service built using Flask for a Software as a Service (SaaS) platform. It provides functionalities such as user signup, login, password reset, inviting new members,role-based access control, and various statistics for role-wise and organization-wise user distributions.
+The project aims to demonstrate building a REST API with Flask.This is a multi-tenant authentication and user management service built using Flask for a Software as a Service (SaaS) platform. It provides functionalities such as user signup, login, password reset, inviting new members,role-based access control, and various statistics for role-wise and organization-wise user distributions.we leverage a Redis queue to handle the asynchronous sending of email notifications for user registration and invite invitations. This design choice allows the application to process email sending in the background, improving the responsiveness and performance of the API.
 
 ## Features
 
@@ -15,8 +15,12 @@ The project aims to demonstrate building a REST API with Flask.This is a multi-t
 
 ## Technologies
 
-- Backend: Flask, Flask-SQLAlchemy, Flask-Migrate
-- Database: PostgreSQL
+- Flask
+- SQLAlchemy
+- Flask-Mail
+- Flask-JWT-Extended
+- Redis
+- PostgreSQL (or any other preferred database)
 - Authentication: Flask-JWT-Extended
 
 ## Routes
@@ -38,8 +42,10 @@ The project aims to demonstrate building a REST API with Flask.This is a multi-t
 
 1. Clone the repository : git clone https://github.com/vinodkumarkuruva/Authorization.git
 
-2.Prerequisites -  Python 3.12: Ensure that Python is installed on your system
-                   Flask - As a Framework
+2.Prerequisites - - Python 3.7+
+                  - pip (Python package installer)
+                  - PostgreSQL (or any other database)
+                  - Redis server
  
 3.Steps to Set Up -
 
@@ -51,8 +57,10 @@ The project aims to demonstrate building a REST API with Flask.This is a multi-t
                                               pip install --upgrade flask-jwt-extended
  
    Set up the database                   :    flask db init
- 	                                          flask db migrate -m "Initial migration"
+ 	                                            flask db migrate -m "Initial migration"
                                               flask db upgrade
+  
+   start redis server                   :     redis-server
  
    Run the server                        :    Python run.py 
  
@@ -73,7 +81,8 @@ The project aims to demonstrate building a REST API with Flask.This is a multi-t
 
 5.Other Info :
 
- -->The service uses Flask-Mail to send alerts for actions like login, signup, and password reset. Ensure that you configure your SMTP server credentials in the environment variables for sending emails.
+ --> The service uses Flask-Mail to send alerts for actions like login, signup, and password reset. Ensure that you configure your SMTP server credentials in the environment variables for sending emails.
  --> Error Handling: The application returns appropriate HTTP 400 status codes for Successful and bad requests.
  --> Modularity: The application is designed to be modular, with separate services handling business logic, making the codebase easy to maintain and extend.
- -->All APIs require data in JSON format. Some APIs, such as authentication, return a JWT token to be used in subsequent requests.
+ --> All APIs require data in JSON format. Some APIs, such as authentication, return a JWT token to be used in subsequent requests.
+ --> In this application, we leverage a Redis queue to handle the asynchronous sending of email notifications for user registration and invite invitations. This design choice allows the application to process email sending in the background, improving the responsiveness and performance of the API.
